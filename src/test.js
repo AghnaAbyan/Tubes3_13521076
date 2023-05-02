@@ -1,3 +1,3 @@
-const levenshtein = require('fast-levenshtein');
+const levenshtein = require('./levenshtein/algorithm');
 
 console.log(levenshtein.get('Honda','Hyundai'));
