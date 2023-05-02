@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/AghnaAbyan/Tubes3_13521076/issues"
   },
-  "homepage": "https://github.com/AghnaAbyan/Tubes3_13521076#readme"
+  "homepage": "https://github.com/AghnaAbyan/Tubes3_13521076#readme",
+  "devDependencies": {
+    "fast-levenshtein": "^3.0.0"
+  }
 }
