@@ -1,0 +1,23 @@
+{
+  "name": "tubes3_13521076",
+  "version": "1.0.0",
+  "description": "Program ini dibuat untuk memenuhi capaian kurikulum Tugas Besar 3 IF2211 Strategi Algoritma 2022/2023, yaitu implementasi algoritma String Matching dan Regular Expression pada suatu masalah, dalam kasus ini yaitu untuk membuat sebuah ChatBot sederhana.",
+  "main": "src/index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AghnaAbyan/Tubes3_13521076.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AghnaAbyan/Tubes3_13521076/issues"
+  },
+  "homepage": "https://github.com/AghnaAbyan/Tubes3_13521076#readme"
+}
