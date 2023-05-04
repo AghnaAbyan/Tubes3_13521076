@@ -1,4 +1,4 @@
-function LastOccur(pattern)
+const LastOccur = (pattern) =>
 {
     let n = 128;
     const last = [];
@@ -13,7 +13,7 @@ function LastOccur(pattern)
     return last;
 }
 
-function boyerMatch(text, pattern)
+const boyerMatch = (text, pattern) =>
 {
     const last = LastOccur(pattern);
     let m = text.length;
@@ -36,6 +36,4 @@ function boyerMatch(text, pattern)
     return -1;
 }
 
-let position = boyerMatch("GCAATGCCTATGTGACC", "TATGTG");
-if (position == -1) {console.log("no pattern");}
-else {console.log("pattern at" + position);}
+module.exports.boyerMatch = boyerMatch;
