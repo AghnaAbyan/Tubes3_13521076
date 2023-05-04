@@ -8,7 +8,7 @@ const LastOccur = (pattern) =>
     }
     for (let i = 0; i < pattern.length; i++)
     {
-        last[pattern.charAt(i)] = i;
+        last[pattern.charCodeAt(i)] = i;
     }
     return last;
 }
@@ -23,12 +23,12 @@ const boyerMatch = (text, pattern) =>
     if (i > m - 1) {return -1;}
     let j = n - 1;
     do {
-        if (pattern.charAt(j) == text.charAt(i))
+        if (pattern.charCodeAt(j) == text.charCodeAt(i))
         {
             if (j == 0) {return i;}
             else {i--; j--;}
         } else {
-            const lastocc = last[text.charAt(i)];
+            const lastocc = last[text.charCodeAt(i)];
             i = i + n - Math.min(j, 1 + lastocc);
             j = n - 1;
         }
@@ -36,4 +36,6 @@ const boyerMatch = (text, pattern) =>
     return -1;
 }
 
-module.exports.boyerMatch = boyerMatch;
+let position = boyerMatch("SSukses", "Sukses");
+if (position == -1) {console.log("no pattern");}
+else {console.log("pattern at " + position);}
