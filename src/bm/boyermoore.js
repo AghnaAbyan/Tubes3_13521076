@@ -36,6 +36,4 @@ const boyerMatch = (text, pattern) =>
     return -1;
 }
 
-let position = boyerMatch("SSukses", "Sukses");
-if (position == -1) {console.log("no pattern");}
-else {console.log("pattern at " + position);}
+module.exports.boyerMatch = boyerMatch;

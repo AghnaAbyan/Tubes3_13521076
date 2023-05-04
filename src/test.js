@@ -1,6 +1,6 @@
 const levenshtein = require('./levenshtein/algorithm');
 const bm = require('./bm/boyermoore');
-const kmp = require('./kmp/kmp')
+const kmp = require('./kmp/kmp');
 
 console.log(levenshtein.get('Honda','Hyundai'));
 

@@ -40,7 +40,6 @@ const solvekmp = (text, pattern) =>
     let pIdx = 0; // index for pattern
 
     plps = lpsarray(pattern, psize, plps)
-    console.log(plps);
 
     let tIdx = 0; // index for text
     while ((tsize - tIdx) >= (pIdx-pIdx)) {
