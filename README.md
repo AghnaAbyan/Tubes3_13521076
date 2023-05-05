@@ -32,8 +32,19 @@ Untuk memudahkan instalasi, pengguna cukup mengikuti langkah-langkah berikut:
 
 
 ## Langkah Compile <a name="compile"></a>
+1. Pastikan semua requirement sudah ada.
+2. Arahkan directory ke folder `chat-mcr`.
+3. Jalankan command `npm run dev`.
+4. Akan terlihat link pada terminal, klik link tersebut untuk mengarahkan anda ke tampilan program.
+
 
 ## Cara Menggunakan Program <a name="penggunaan"></a>
+1. Terdapat box dibagian bawah layar yang berfungsi untuk menaruh pertanyaan pengguna, taruh pertanyaan di kotak pertanyaan tersebut.
+2. Jika pengguna ingin menanyakan hari pada tanggal tertentu, tanyakan dengan format "[YYYY/MM/DD]?"
+3. Jika pengguna ingin menanyakan perhitungan aritmatika, tanyakan dengan format perhitungan aritmatika seperti biasa.
+4. Jika pengguna ingin menanyakan pertanyaan, tanyakan sebebas-bebasnya namun tanpa tanda tanya di belakangnya.
+5. Jika pengguna ingin menambahkan pertanyaan ke database, tuliskan dengan format "Tambahkan pertanyaan [pertanyaan] dengan jawaban [jawaban]."
+6. Jika pengguna ingin menghapus pertanyaan dari database, tuliskan dengan format "Hapus pertanyaan [pertanyaan]."
 
 ## Lampiran <a name="lampiran"></a>
 - Repository GitHub : https://github.com/AghnaAbyan/Tubes3_13521076
