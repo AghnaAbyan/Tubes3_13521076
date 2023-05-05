@@ -88,3 +88,7 @@ class Database{
         }
     }
 }
+
+const db = new Database(CONNECTION_STRING);
+
+module.exports.db = db;
