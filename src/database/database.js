@@ -64,11 +64,27 @@ class Database{
 
     /**
      * @public
-     * delete a data from database that matches value
-     * @param {object} value
+     * delete a data from database that matches filter
+     * @param {object} filter
      * @returns {object} deletedData
      */
-    async delete(value){
+    async delete(filter){
+        let deletedData = undefined;
+        try{
+            await this.client.connect();
 
+            deletedData = await this.client.db('stima').collection('qa').findOne(filter);
+            if(deletedData){
+                console.log(`Successfully deleted data with the following id: ${deletedData._id}`);
+            }
+            else{
+                console.log(`Data not found`);
+            }
+            await this.client.db('stima').collection('qa').deleteOne(filter);
+        }
+        finally{
+            await this.client.close();
+            return deletedData;
+        }
     }
 }
