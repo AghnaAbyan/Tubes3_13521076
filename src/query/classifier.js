@@ -13,8 +13,8 @@ const QueryClassification = {
  * @returns {number} QueryClasification enum
  */
 const classify = (query) => {
-    const dateISO_regex = new RegExp(/^(\d{1,4}\/\d{1,2}\/\d{1,2})$/);
-    const date_regex = new RegExp(/^(\d{1,2}\/\d{1,2}\/\d{1,4})$/);
+    const dateISO_regex = new RegExp(/^(\d{1,4}\/\d{1,2}\/\d{1,2})?$/);
+    const date_regex = new RegExp(/^(\d{1,2}\/\d{1,2}\/\d{1,4})?$/);
     const addQA_regex = new RegExp(/^(Tambahkan pertanyaan)\s+(\w+\s*)+\s(dengan jawaban)\s+(\w+\s*)+$/);
     const removeQA_regex = new RegExp(/^(Hapus pertanyaan)\s+(\w+\s*)+$/);
     const calculator_regex = new RegExp(/^\s*((\s*[+\-*/^()]\s*|\d)+\s*[=?]?$)/);

@@ -65,11 +65,12 @@ const get_day = (date) => {
         2: 'Sabtu'
     }
 
-    const firstIdx = date.indexOf('/');
-    const lastIdx = date.lastIndexOf('/');
-    const year = parseInt(date.substring(0,firstIdx));
-    const month = parseInt(date.substring(firstIdx+1, lastIdx));
-    const day = parseInt(date.substring(lastIdx+1));
+    const dateres = date.substring(0,date.length-1);
+    const firstIdx = dateres.indexOf('/');
+    const lastIdx = dateres.lastIndexOf('/');
+    const year = parseInt(dateres.substring(0,firstIdx));
+    const month = parseInt(dateres.substring(firstIdx+1, lastIdx));
+    const day = parseInt(dateres.substring(lastIdx+1));
     let isValid = true;
 
     if([1,3,5,7,8,10,12].includes(month)){
@@ -94,16 +95,17 @@ const get_day = (date) => {
     const diffday = Math.round((d-ref)/MS_IN_A_DAY);
     const result_day = Days[((diffday % 7) + 7) % 7];
 
-    return date+" adalah hari "+result_day;
+    return dateres+" adalah hari "+result_day;
 }
 
 /**
  * @private
  * fetch answer from database for the corresponding question
  * @param {string} question
+ * @param {function} stringMatchingAlgorithm
  * @returns {string} answer
  */
-const fetch_qa = (question) => {
+const fetch_qa = (question, stringMatchingAlgorithm) => {
 
 }
 
