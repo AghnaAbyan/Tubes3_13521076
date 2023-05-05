@@ -11,14 +11,14 @@ class Database{
 
     /**
      * @public
-     * returns object that matches value in database
-     * @param {object} value 
-     * @returns {object} result
+     * returns object that matches filter in database
+     * @param {object} filter 
+     * @returns {object} firstFound
      */
-    async find(value){
+    async find(filter){
         try{
             await this.client.connect();
-            const result = await this.client.db('stima').collection('qa').findOne(value);
+            const result = await this.client.db('stima').collection('qa').findOne(filter);
 
             if(result){
                 console.log(`Found data with the following id: ${result._id}`);
