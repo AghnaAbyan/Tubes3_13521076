@@ -19,7 +19,7 @@ function UserChat(props) {
         </div>
         <div className="col-md-2 order-1 order-md-2 text-right">
           <img
-            src="./src/assets/bot.png"
+            src="./src/assets/user.png"
             alt="Profile"
             className="img-fluid rounded-circle"
             style={{ width: "5.2vw", height: "auto", marginTop: "20px" }}

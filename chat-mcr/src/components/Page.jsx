@@ -10,8 +10,8 @@ function Page(props) {
       <div className="page">
         <div className="container">
           <div className="row align-items-start">
-            <div className="col-md-2"></div>
-            <div className="col-md-10">
+            <div className="col-md-1"></div>
+            <div className="col-md-8">
               <div className="chat-container">
                 {props.items.map((item, index) => {
                   if (index % 2 === 1) {
