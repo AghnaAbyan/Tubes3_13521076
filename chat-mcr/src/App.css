@@ -1,0 +1,49 @@
+@font-face {
+  font-family: 'Helvetica';
+  src: url('Helvetica.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*@font-face {
+  font-family: 'Work Sans';
+  src: url('./chat-mcr/src/fonts/WorkSans-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}*/
+
+.app {
+  font-family: 'Work Sans', sans-serif;
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  font-family: 'Work Sans', sans-serif;
+
+  flex: auto;
+  padding: 3.5vw;
+  position: absolute;
+  width: 33vw;
+  height: 100vh;
+  left: 0px;
+  top: 0px;
+
+  background: #00C9B7;
+  box-shadow: 0px 4.25806px 4.25806px rgba(38, 35, 35, 0.25);
+}
+
+.page {
+  font-family: 'Work Sans', sans-serif;
+
+  flex: 1;
+  padding: 20px;
+  position: absolute;
+  width: 67vw;
+  height: 100vh;
+  left: 36vw;
+  top: 0vw;
+
+  /*background: #FFFF;*/
+}
