@@ -98,6 +98,14 @@ const get_day = (date) => {
     return dateres+" adalah hari "+result_day;
 }
 
+const findMostSimilarText = (text){
+    let minDistance = Infinity;
+    let mostSimilarText = '';
+
+    const   
+
+}
+
 /**
  * @private
  * fetch answer from database for the corresponding question
@@ -144,3 +152,5 @@ const remove_qa = (query) => {
     if(deletedData != undefined) return "Berhasil menghapus pertanyaan dan jawabannya";
     else return "Gagal menghapus, pertanyaan tidak ditemukan";
 }
+
+module.exports.answer = answer;
