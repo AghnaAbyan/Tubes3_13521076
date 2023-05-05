@@ -9,16 +9,29 @@ class Database{
         this.client = new MongoClient(connection_string)
     }
 
+    async fetch(){
+        let result;
+        try{
+            await this.client.connect();
+            result = await this.client.db('stima').collection('qa').find().toArray();
+        }
+        finally{
+            await this.client.close();
+            return result;
+        }
+    }
+
     /**
      * @public
      * returns object that matches filter in database
      * @param {object} filter 
-     * @returns {object} firstFound
+     * @returns {object} found
      */
     async find(filter){
+        let result;
         try{
             await this.client.connect();
-            const result = await this.client.db('stima').collection('qa').findOne(filter);
+            result = await this.client.db('stima').collection('qa').findOne(filter);
 
             if(result){
                 console.log(`Found data with the following id: ${result._id}`);
