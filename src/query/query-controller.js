@@ -2,6 +2,7 @@ const {classify, QueryClassification} = require('./classifier');
 const {db} = require('../database/database');
 const {solvekmp} = require('../kmp/kmp');
 const {boyerMatch} = require('../bm/boyermoore');
+const {get} = require('../levenshtein/algorithm');
 
 /**
  * @public
@@ -19,7 +20,7 @@ const answer = (query, stringMatchingAlgorithm) => {
     const classification = classify(query);
 
     switch(classification){
-        case QueryClassification.QA: return ;
+        case QueryClassification.QA: return fetch_qa(query, stringMatchingAlgorithm);
         case QueryClassification.addQA: return insert_qa(query, stringMatchingAlgorithm);
         case QueryClassification.removeQA: return remove_qa(query);
         case QueryClassification.date: return "Tanggal harus dalam bentuk ISO";
@@ -98,14 +99,6 @@ const get_day = (date) => {
     return dateres+" adalah hari "+result_day;
 }
 
-const findMostSimilarText = (text){
-    let minDistance = Infinity;
-    let mostSimilarText = '';
-
-    const   
-
-}
-
 /**
  * @private
  * fetch answer from database for the corresponding question
@@ -114,8 +107,27 @@ const findMostSimilarText = (text){
  * @returns {string} answer
  */
 const fetch_qa = (question, stringMatchingAlgorithm) => {
+    let minDistance = Infinity;
 
+    const promise = db.fetch();
+    promise.then((arr) => {
+        let txtmax = '';
+        let max = 0;
+        for(const obj of arr){
+            const txt = obj.question.split(' ');
+            const distance = get(txt, question);
+            const kemiripan = 1-(distance/txt.length);
+
+            if(kemiripan > max){
+                max = kemiripan;
+                txtmax = txt;
+            }
+        }
+        return txtmax;
+    });
 }
+
+console.log(fetch_qa('Apa ibukota Filipina'));
 
 /**
  * @private
