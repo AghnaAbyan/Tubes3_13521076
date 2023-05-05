@@ -6,9 +6,8 @@ function InputValue(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(`Question: ${question}`);
-    console.log("yak");
     props.onSendMessage(question);
-    console.log("why?");
+
     setQuestion(""); // clear input field
   };
 
