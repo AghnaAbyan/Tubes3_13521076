@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 
-function InputValue() {
+function InputValue(props) {
   const [question, setQuestion] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(`Question: ${question}`);
-    // Add code to submit form data'
+    console.log("yak");
+    props.onSendMessage(question);
+    console.log("why?");
     setQuestion(""); // clear input field
   };
 

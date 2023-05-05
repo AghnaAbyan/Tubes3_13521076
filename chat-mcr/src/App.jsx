@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Page from "./components/Page";
 import Sidebar from "./components/Sidebar";
 import "./App.css";
 
 function App() {
+  const [messages, setMessages] = useState([
+    "This is a long message that should wrap to the next line when it exceeds the width of the chat box",
+    "This is another long message that should wrap to the next line when it exceeds the width of the chat box.",
+    "This is a short message.",
+  ]);
+
+  const handleSendMessage = (message) => {
+    setMessages([...messages, message]);
+  };
+
   return (
     <div className="app">
       <Sidebar
@@ -29,12 +39,9 @@ function App() {
       />
       <Page
         title="Welcome"
-        items={[
-          "This is a long message that should wrap to the next line when it exceeds the width of the chat box",
-          "This is another long message that should wrap to the next line when it exceeds the width of the chat box.",
-          "his is a short message.",
-        ]}
-      ></Page>
+        items={messages}
+        onSendMessage={handleSendMessage}
+      />
     </div>
   );
 }

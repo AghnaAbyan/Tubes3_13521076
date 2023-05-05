@@ -27,7 +27,7 @@ function Page(props) {
           </div>
         </div>
 
-        <InputValue />
+        <InputValue onSendMessage={props.onSendMessage} />
       </div>
     </>
   );
