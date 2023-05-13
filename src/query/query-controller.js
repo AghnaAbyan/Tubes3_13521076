@@ -92,7 +92,22 @@ const fetch_qa = (question, stringMatchingAlgorithm, callback) => {
             return get(pattern, str1.question) - get(pattern, str2.question);
         });
 
-        answer = sortedStrings[0].answer;
+        const distance = get(sortedStrings[0].question.toLowerCase(), pattern);
+        const kemiripan = 1-(distance/Math.max(pattern.length, sortedStrings[0].question.length));
+        if(kemiripan > 0.9){
+            answer = sortedStrings[0].answer;
+        }
+        else{
+            let count = 0;
+            sortedStrings.forEach((str) => {
+                let mirip = 1-(get(pattern, str.question.toLowerCase())/Math.max(pattern.length, str.question.length));
+                answer += "Kemiripan: "+mirip*100 + "%\n";
+                answer += '"'+str.question+'"\n';
+                answer += str.answer+'\n\n';
+                count++;
+                if(count>5) return;
+            })
+        }
 
         // console.log(sortedStrings);
 
@@ -185,6 +200,6 @@ const answer = (query, stringMatchingAlgorithm=null, callback=null) => {
     }
 }
 
-answer("Tambahkan pertanyaan Selamat sore dengan jawaban sore jugaa", boyerMatch);
+answer("Apa ibukota Jerm", boyerMatch, (str) => console.log(str));
 
 module.exports.answer = answer;
