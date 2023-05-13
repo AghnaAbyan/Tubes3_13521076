@@ -5,32 +5,6 @@ const {boyerMatch} = require('../bm/boyermoore');
 const {get} = require('../levenshtein/algorithm');
 
 /**
- * @public
- * get the answer to query according to 5 classifications:
- * - QA
- * - Calculator
- * - Date
- * - Add QA
- * - Remove QA
- * @param {string} query
- * @param {function} stringMatchingAlgorithm
- * @returns {string} answer to query
- */
-const answer = (query, stringMatchingAlgorithm) => {
-    const classification = classify(query);
-
-    switch(classification){
-        case QueryClassification.QA: return fetch_qa(query, stringMatchingAlgorithm);
-        case QueryClassification.addQA: return insert_qa(query, stringMatchingAlgorithm);
-        case QueryClassification.removeQA: return remove_qa(query);
-        case QueryClassification.date: return "Tanggal harus dalam bentuk ISO";
-        case QueryClassification.dateISO: return get_day(query);
-        case QueryClassification.calculator: return eval_exp(query);
-    }
-}
-
-
-/**
  * @private
  * evaluate integer arithmetic expression
  * supported opreators: + - * / ^ 
@@ -106,28 +80,49 @@ const get_day = (date) => {
  * @param {function} stringMatchingAlgorithm
  * @returns {string} answer
  */
-const fetch_qa = (question, stringMatchingAlgorithm) => {
-    let minDistance = Infinity;
+const fetch_qa = (question, stringMatchingAlgorithm, callback) => {
+    let minDistance = 9999;
+    let answer = null;
+
 
     const promise = db.fetch();
-    promise.then((arr) => {
-        let txtmax = '';
-        let max = 0;
-        for(const obj of arr){
-            const txt = obj.question.split(' ');
-            const distance = get(txt, question);
-            const kemiripan = 1-(distance/txt.length);
+    promise.then((stringList) => {
+        const pattern = question.toLowerCase();
+        const sortedStrings = stringList.sort((str1, str2)=>{
+            return get(pattern, str1.question) - get(pattern, str2.question);
+        });
 
-            if(kemiripan > max){
-                max = kemiripan;
-                txtmax = txt;
-            }
-        }
-        return txtmax;
+        answer = sortedStrings[0].answer;
+
+        // console.log(sortedStrings);
+
+        // const matchingStrings = stringList.filter((str) => stringMatchingAlgorithm(str.question.toLowerCase(), pattern)!==-1);
+        // const matchingString = stringList.filter((str) => {
+        //     const strWords = str.question.toLowerCase().split(/\s+/);
+        //     return pattern.some((word) => 
+        //         stringMatchingAlgorithm(strWords, word)
+        //     )
+        // })
+        // console.log(matchingStrings);
+
+        // for(const obj of matchingString){
+        //     // console.log(stringMatchingAlgorithm(pattern, obj.question.toLowerCase()));
+        //     // console.log(obj)
+        //     // const txt = obj.question.split(' ');
+        //     const txt = obj.question.toLowerCase();
+        //     const distance = get(txt, pattern);
+        //     console.log(distance);
+        //     if(minDistance > distance){
+        //         minDistance = distance;
+        //         answer = obj.answer;
+        //     }
+        // }
+        callback(answer);
     });
 }
 
-console.log(fetch_qa('Apa ibukota Filipina'));
+// fetch_qa('Apa ibukota Filipina', boyerMatch, (str)=>console.log(str));
+
 
 /**
  * @private
@@ -164,5 +159,32 @@ const remove_qa = (query) => {
     if(deletedData != undefined) return "Berhasil menghapus pertanyaan dan jawabannya";
     else return "Gagal menghapus, pertanyaan tidak ditemukan";
 }
+
+/**
+ * @public
+ * get the answer to query according to 5 classifications:
+ * - QA
+ * - Calculator
+ * - Date
+ * - Add QA
+ * - Remove QA
+ * @param {string} query
+ * @param {function} stringMatchingAlgorithm
+ * @returns {string} answer to query
+ */
+const answer = (query, stringMatchingAlgorithm=null, callback=null) => {
+    const classification = classify(query);
+
+    switch(classification){
+        case QueryClassification.QA: return fetch_qa(query, stringMatchingAlgorithm, callback);
+        case QueryClassification.addQA: return insert_qa(query, stringMatchingAlgorithm);
+        case QueryClassification.removeQA: return remove_qa(query);
+        case QueryClassification.date: return "Tanggal harus dalam bentuk ISO";
+        case QueryClassification.dateISO: return get_day(query);
+        case QueryClassification.calculator: return eval_exp(query);
+    }
+}
+
+answer("Tambahkan pertanyaan Selamat sore dengan jawaban sore jugaa", boyerMatch);
 
 module.exports.answer = answer;
