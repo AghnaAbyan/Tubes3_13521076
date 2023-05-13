@@ -42,7 +42,7 @@ const solvekmp = (text, pattern) =>
     plps = lpsarray(pattern, psize, plps)
 
     let tIdx = 0; // index for text
-    while ((tsize - tIdx) >= (pIdx-pIdx)) {
+    while ((tsize - tIdx) > (pIdx-pIdx)) {
         if (pattern.charAt(pIdx) == text.charAt(tIdx)) {
             pIdx++;
             tIdx++;
